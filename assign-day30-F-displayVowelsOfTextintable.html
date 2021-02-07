@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Hello</title>
+    </head>
+    <body>
+        <div id = 'root'>
+        </div>
+           
+            <script src="C:\Users\SHASHI NIRANJAN\jan-2020-mern\react\js\react.development.js"></script>
+            <script src="C:\Users\SHASHI NIRANJAN\jan-2020-mern\react\js\react-dom.development.js"></script>
+            <script src="C:\Users\SHASHI NIRANJAN\jan-2020-mern\react\js\babel.js"></script>
+
+            <script type="text/babel">
+                    
+            const rootHandle = document.getElementById('root')
+
+            class VowelsInTable extends React.Component{
+                constructor(){
+                    super()
+                    this.state = {
+                        content: '',
+                        result: {a:0, e:0, i:0, o:0, u:0 }                   
+                    }                   
+                }
+
+                handleContentChange =(e)=>{
+                    const content = e.target.value
+                     this.setState({content})
+                }
+
+                handleSubmit=(e)=>{
+                    e.preventDefault()
+                    const vowels  ='aeiou'
+                    const result = {a:0, e:0, i:0, o:0, u:0 }
+   
+                     for (const char of this.state.content ){
+                 
+                       if(result.hasOwnProperty(char)) {
+                        result [char] = result [char] + 1
+                          }
+    
+                       }
+                    this.setState({ result })
+                }   
+                     
+                render() {
+                return (
+                   <div>
+                       <h2>Vowels Count</h2>
+                       <form onSubmit ={this.handleSubmit}>
+                       <label htmlFor='str'>Type Here <textarea value={this.state.content} onChange={this.handleContentChange}></textarea></label>
+                       <br/> <br/>
+                       <input type='submit' value='count vowels'/>
+                      </form>
+
+                      <table border="1">
+                            <thead>
+                                <tr>
+                                    <th> a</th> 
+                                    <th> e </th> 
+                                    <th> i</th> 
+                                    <th> o</th> 
+                                    <th> u</th> 
+                                </tr> 
+                            </thead> 
+                            <tbody>                                        
+                                            <tr>
+                                                <td>{this.state.result.a}  </td> 
+                                                <td> {this.state.result.e} </td> 
+                                                <td> {this.state.result.i}  </td> 
+                                                <td> {this.state.result.o}  </td> 
+                                                <td>{this.state.result.u}   </td> 
+                                            </tr>                                 
+                            </tbody> 
+                        </table> 
+                   </div>
+
+                )
+            }
+        }
+
+            ReactDOM.render(<VowelsInTable/>, rootHandle)
+            
+          </script>
+    </body>
+</html>
